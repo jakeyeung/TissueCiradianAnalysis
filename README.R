@@ -16,8 +16,7 @@ setwd(here())
 #' ## Load data
 
 inf <- "data/GR_2018_Primetime_Objects.Rdata"
-load(inf, v=T)
-
+suppressMessages(load(inf, v=F))
 
 
 #' ## Plot some genes
@@ -31,8 +30,9 @@ PlotGeneAcrossTissues(dat.sub) + theme_bw()  + theme(aspect.ratio = 1, legend.po
 
 #' we do model selection to identify rhythmic parameters shared or differenet across tissues
 
-#' **Model selection output automatically groups tissues by rhythmic parameters: ** `#+ fig.width=4, fig.height=4, dpi=50`
+#' ### Model selection output automatically groups tissues by rhythmic parameters
 #'
+
 jgene.byparam <- "Ube2u"
 PlotGeneByRhythmicParameters(fits.long, subset(dat.long, experiment == "array"),
                                   jgene.byparam, amp.filt = 0.2, jtitle=jgene.byparam, facet.rows = 1, jcex = 8,
@@ -44,7 +44,7 @@ PlotGeneByRhythmicParameters(fits.long, subset(dat.long, experiment == "array"),
 #'
 #' Dbp is clock controlled, because it is flat in Bmal1 KO
 
-#' **WT vs KO DBP: ** `#+ fig.width=4, fig.height=4, dpi=50`
+#' ### WT vs KO DBP:
 
 PlotGeneTissuesWTKO(subset(dat.wtko, gene == jgene), jtitle = jgene, jsize = 10, single.day = TRUE)
 
@@ -72,7 +72,7 @@ s.tw.wtko <- SvdOnComplex(subset(dat.freq, gene %in% genes.tw.wtko), value.var =
 eigens.tw <- GetEigens(s.tw, period = 24, comp = svdcomponent, add.arrow = TRUE, jsize = 2, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
 jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
-#' **Tissue-wide SVD module: ** `#+ fig.width=4, fig.height=4, dpi=50`
+#' ### Tissue-wide SVD module
 multiplot(eigens.tw$u.plot, eigens.tw$v.plot, layout = jlayout)
 
 #' The gene loadings show how the phase and amplitude relates to each other. For example, we find /Arntl/ to oscillate in phase with /Npas2/ across tissues, but antiphasic with /Dbp/.
@@ -82,7 +82,7 @@ multiplot(eigens.tw$u.plot, eigens.tw$v.plot, layout = jlayout)
 eigens.tw.wtko <- GetEigens(s.tw.wtko, period = 24, add.arrow = TRUE, comp = svdcomponent, jsize = 2, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
 jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
-#' **Tissue-wide SVD module on WT and KO data ** `#+ fig.width=4, fig.height=4, dpi=50`
+#' ### Tissue-wide SVD module on WT and KO data
 multiplot(eigens.tw.wtko$u.plot, eigens.tw.wtko$v.plot, layout = jlayout)
 
 

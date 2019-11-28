@@ -1,0 +1,39 @@
+---
+title: "Explore and analyze circadian gene expression across tissues"
+author: "Jake Yeung"
+date: "11/27/2019"
+output: html_document
+---
+
+```{r setup}
+print("Here")
+```
+
+## Load data
+
+```{r loaddat}
+
+# GR_2018_Primetime_Objects
+```
+
+## Plot some genes
+
+```{}
+
+
+```
+
+
+## Motivate complex-valued SVD
+
+```{}
+
+```
+
+## Do complex-valued SVD
+
+```{}
+
+
+```
+
