@@ -5,10 +5,27 @@
 
     library(reshape2)
     library(dplyr)
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
     library(ggplot2)
     library(hash)
+
+    ## hash-2.2.6.1 provided by Decision Patterns
+
     library(CircadianRNASeq)
     library(here())
+
+    ## here() starts at /home/yeung/projects/CircadianRNASeq
 
     setwd(here())
 
@@ -16,257 +33,7 @@ Load data
 ---------
 
     inf <- "data/GR_2018_Primetime_Objects.Rdata"
-    load(inf, v=T)
-
-    ## Loading objects:
-    ##   ModelStrToModel
-    ##   plot.dir
-    ##   NormalizeWeightsFromFits
-    ##   UnzipMatrices
-    ##   .sql
-    ##   remove.kidney.outliers
-    ##   CollapseTissueGeno
-    ##   PlotComplex
-    ##   GetPhi
-    ##   MakeRhythmicDesignMatrices
-    ##   PlotRnaMicroarrayFit
-    ##   UpdateFitWeights
-    ##   dat.freq
-    ##   SubsetGenoSignalTimeType
-    ##   LoadActivitiesLongDhs
-    ##   ListToLong
-    ##   dat.long
-    ##   OscillateRelamp
-    ##   StaggeredTimepointsLivKid
-    ##   PlotHeatmapAmpPhasePval
-    ##   PlotEigensamp
-    ##   GetAvgAmpFromParams
-    ##   .Random.seed
-    ##   PlotAgainstRnaSeq
-    ##   PlotEncodeRnaseq
-    ##   PlotComplex2
-    ##   .First
-    ##   DoFourier.se
-    ##   SameTimepointsLivKid
-    ##   ModelLikelihood
-    ##   GetSdPhaseFromParams
-    ##   PlotLoadings
-    ##   GetEigens
-    ##   PlotComplexCircle
-    ##   CountModels
-    ##   ScaleSignal
-    ##   BICFromLmFit
-    ##   GetUnobsObsSymbol
-    ##   RunPldaSystemsClock
-    ##   CalculatePeriodogramLong
-    ##   zscore.min
-    ##   PlotPolarHistogram
-    ##   ProjectWithZscore
-    ##   GetFullR
-    ##   ProjectToPeriodicTime
-    ##   GetTissuesFromCoefFit
-    ##   is_outlier
-    ##   GetSinCombos
-    ##   SecondDerivG
-    ##   PlotOverlayTimeSeries
-    ##   ExtraParamsFromFit
-    ##   SvdOnComplex
-    ##   FitCombinations
-    ##   start
-    ##   GetTopNModelsFromFits
-    ##   AddDf
-    ##   GetPhi.se
-    ##   GetRSquaredFromFits
-    ##   jmeth
-    ##   GetTFs
-    ##   PlotAmpPhase
-    ##   RemoveP2Name
-    ##   ChunkDatGenesToFile
-    ##   NGenesByAmp
-    ##   RemoveLowlyExpressedGenes
-    ##   PlotHeatmapNconds
-    ##   n
-    ##   log1pExp
-    ##   MakeCnamesLivKidWTKO
-    ##   circular_phase24H_histogram
-    ##   PlotGeneAcrossTissuesRnaseq
-    ##   .N.sub.liv
-    ##   GetHistCounts
-    ##   PlotExprsHeatmap
-    ##   DelPhi.Dela
-    ##   PriorG
-    ##   DelPhi.Delb
-    ##   prot.long
-    ##   RemoveCommasBraces
-    ##   GetGenesFromMotifs
-    ##   ConvertToSingleDay
-    ##   MakeDesMatRunFit
-    ##   PlotMeanExprsOfModel
-    ##   CalculatePeriodogram
-    ##   GetTopGenesFromSvd
-    ##   PlotGeneByRhythmicParameters
-    ##   ProjectOnVector
-    ##   FitToMat
-    ##   GetPhaseFromParams
-    ##   FilterLiverGenes
-    ##   PlotGeneAcrossTissues
-    ##   PlotProteomics
-    ##   NormalizeComplexMat
-    ##   PlotPeriodogram
-    ##   FindMaxFreqs
-    ##   PlotSvdFromGeneList
-    ##   multiplot
-    ##   LoadFitsFromModels
-    ##   ConcatenateFits
-    ##   tissue.order
-    ##   fits.bytiss
-    ##   fits.long
-    ##   .ls.objects
-    ##   .Last
-    ##   NGenesByAmp.long
-    ##   CoefToModelName
-    ##   LoadChunkRunNconds
-    ##   dat.wtko.collapsed
-    ##   RemoveLowExprsPseudoShortGenes
-    ##   GetInterval
-    ##   ModeG
-    ##   DiffPhase
-    ##   PlotTpmAcrossTissuesWTKO
-    ##   NrhythToStr
-    ##   AddColname
-    ##   Transform
-    ##   Center
-    ##   MakeDesMatFromModelName
-    ##   OrderDecreasing
-    ##   TemporalToFrequency2
-    ##   DelFA.DelI
-    ##   remove.wfat
-    ##   GetBestModel
-    ##   FilterGenesByTissue
-    ##   dat.wtko
-    ##   dotsize
-    ##   PlotComplexLong
-    ##   GetMaxPhaseDiffFromParams
-    ##   PlotTpmAcrossTissues
-    ##   LoadActivitiesLong
-    ##   SaveDatGenes
-    ##   GetFourierEntropy
-    ##   SubsetByMaxBicWeight
-    ##   GetSelectionCriterion
-    ##   dat.complex
-    ##   PlotActivitiesWithSE.dhs
-    ##   fits.long.filt
-    ##   LoadPhosphoData
-    ##   MakeModelName
-    ##   PlotFitDiagnostics
-    ##   PlotRnaseqAcrossTissues
-    ##   AdjustPhase
-    ##   SHOWTHIS
-    ##   .rdataPath
-    ##   ProjectToFrequency2
-    ##   PcToMotif
-    ##   PlotAmpPhaseAllTissues
-    ##   GetRhythModel.cos
-    ##   TissueFromCname
-    ##   PlotActivitiesWithSE.rnaseq
-    ##   PlotActivitiesWithSE.wtko
-    ##   InvGamma
-    ##   GetBayesFactor
-    ##   GetFlatModel
-    ##   is_top_N
-    ##   DoFourier
-    ##   IsRhythmic
-    ##   LoadActivitiesLongKidneyLiver
-    ##   TimeFromCname
-    ##   ProjectToFrequency
-    ##   SumWeights
-    ##   PlotGeneNormalized
-    ##   GetTimesTissuesGenoKL
-    ##   AICFromLmFit
-    ##   gg_color_hue
-    ##   GetNrhythFromModel
-    ##   ConvertArgToPhase
-    ##   GetRhythmicFormula.Shared
-    ##   FracVarByGeneList
-    ##   FitRhythmicDesMat
-    ##   MakeDesMatRunFitEnv
-    ##   CoefToParams
-    ##   tfs
-    ##   PlotFirstNComponents
-    ##   PlotDiagnostics
-    ##   RemoveDashes
-    ##   GetNoiseFactor
-    ##   GetRhythModel.sin
-    ##   make_circ_coord
-    ##   PlotEigengene
-    ##   GetGenoFromSamp
-    ##   PlotmRNAActivityProtein
-    ##   ModelLikelihood2
-    ##   PlotMeanActivitiesWithSE
-    ##   ggplotColours
-    ##   PlotPeriodogramLong
-    ##   PlotHeatmapGeneList
-    ##   LaplaceApprox
-    ##   PlotBeforeAfter
-    ##   GetMotifFromGene
-    ##   TemporalToFrequency
-    ##   GetRhythmicFormula
-    ##   NormalizeWeights
-    ##   PlotArgsMatrix
-    ##   PlotAmpPhaseTissue
-    ##   PlotGeneTissuesWTKO
-    ##   LoadLivKid
-    ##   MakeHash
-    ##   GetRhythModel
-    ##   PlotGenesInModel
-    ##   AtanPositive
-    ##   plot.i
-    ##   RemoveP2AndCommaBracesDashes
-    ##   DelF.DelI
-    ##   PlotComponentOriginal
-    ##   PlotMeanActivitiesWithSE.singleintercept
-    ##   GetAmpPhaseFromActivities
-    ##   GetAllCombos
-    ##   PlotComplex2.act
-    ##   GetAmp.se
-    ##   GetCosCombos
-    ##   PlotTissuePcaFromGenelist
-    ##   FitModel
-    ##   ModelToTissue
-    ##   SaveChunk
-    ##   GetTimeFromSamp
-    ##   NRhythmicFromString
-    ##   LoadDesMatDatGeneRunFits
-    ##   hr.shift
-    ##   NRhythmicFromVector
-    ##   PlotRelampHeatmap
-    ##   GetAmp
-    ##   PCbiplot
-    ##   TemporalToFrequencyDatLong
-    ##   MakeDesMatChunks
-    ##   mrna.hl
-    ##   MaxDiffPhaseVector
-    ##   DelR.Dela
-    ##   DelR.Delb
-    ##   FilterModelByAmp
-    ##   GetOmegas
-    ##   GetTopMotifs
-    ##   `.__T__$:base`
-    ##   SetdiffTimepoints
-    ##   FilterCombos
-    ##   omega
-    ##   LoadProteomicsData
-    ##   GetDesignMatrices
-    ##   FitModels
-    ##   AddRhythmicColumns
-    ##   PlotActivitiesWithSE
-    ##   PlotGOTermsPhase
-    ##   BICWeight
-    ##   DelFB.DelI
-    ##   GetSinusoid
-    ##   SubsetFullDesignMatrix
-    ##   outliers
-    ##   FilterKidneyLiverGenes
+    suppressMessages(load(inf, v=F))
 
 Plot some genes
 ---------------
@@ -282,9 +49,8 @@ Plot some genes
 ![](README_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
 we do model selection to identify rhythmic parameters shared or
-differenet across tissues **Model selection output automatically groups
-tissues by rhythmic parameters: **
-`#+ fig.width=4, fig.height=4, dpi=50`
+differenet across tissues \#\#\# Model selection output automatically
+groups tissues by rhythmic parameters
 
     jgene.byparam <- "Ube2u"
     PlotGeneByRhythmicParameters(fits.long, subset(dat.long, experiment == "array"),
@@ -302,13 +68,41 @@ microarray and RNA-seq together. \#\#\# Plot genes for WT and KO to see
 whether a gene is clock-controlled or clock-independent (e.g., driven by
 feeding rhythms)
 
-Dbp is clock controlled, because it is flat in Bmal1 KO **WT vs KO DBP:
-** `#+ fig.width=4, fig.height=4, dpi=50`
+Dbp is clock controlled, because it is flat in Bmal1 KO \#\#\# WT vs KO
+DBP:
 
     PlotGeneTissuesWTKO(subset(dat.wtko, gene == jgene), jtitle = jgene, jsize = 10, single.day = TRUE)
 
     ## Warning: Detecting old grouped_df format, replacing `vars` attribute by
     ## `groups`
+
+    ## Warning: filter_() is deprecated. 
+    ## Please use filter() instead
+    ## 
+    ## The 'programming' vignette or the tidyeval book can help you
+    ## to program with filter() : https://tidyeval.tidyverse.org
+    ## This warning is displayed once per session.
+
+    ## Warning: mutate_() is deprecated. 
+    ## Please use mutate() instead
+    ## 
+    ## The 'programming' vignette or the tidyeval book can help you
+    ## to program with mutate() : https://tidyeval.tidyverse.org
+    ## This warning is displayed once per session.
+
+    ## Warning: group_by_() is deprecated. 
+    ## Please use group_by() instead
+    ## 
+    ## The 'programming' vignette or the tidyeval book can help you
+    ## to program with group_by() : https://tidyeval.tidyverse.org
+    ## This warning is displayed once per session.
+
+    ## Warning: summarise_() is deprecated. 
+    ## Please use summarise() instead
+    ## 
+    ## The 'programming' vignette or the tidyeval book can help you
+    ## to program with summarise() : https://tidyeval.tidyverse.org
+    ## This warning is displayed once per session.
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
@@ -325,8 +119,8 @@ KO
     ## # Groups:   gene, method [1]
     ##   gene  model weight weight.raw param.list method n.params n.rhyth amp.avg
     ##   <fct> <fct>  <dbl>      <dbl> <list>     <chr>     <int>   <int>   <dbl>
-    ## 1 Dbp   Live…  0.966      -48.7 <dbl [6]>  g=1001        1       2    2.83
-    ## # … with 3 more variables: phase.sd <dbl>, phase.maxdiff <dbl>,
+    ## 1 Dbp   Live~  0.966      -48.7 <dbl [6]>  g=1001        1       2    2.83
+    ## # ... with 3 more variables: phase.sd <dbl>, phase.maxdiff <dbl>,
     ## #   phase.avg <dbl>
 
 Complex-valued SVD
@@ -358,7 +152,7 @@ visualize how modules of genes oscillate across tissues
 
     jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
-**Tissue-wide SVD module: ** `#+ fig.width=4, fig.height=4, dpi=50`
+### Tissue-wide SVD module
 
     multiplot(eigens.tw$u.plot, eigens.tw$v.plot, layout = jlayout)
 
@@ -381,8 +175,7 @@ than other tissues like liver)
 
     jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
-**Tissue-wide SVD module on WT and KO data **
-`#+ fig.width=4, fig.height=4, dpi=50`
+### Tissue-wide SVD module on WT and KO data
 
     multiplot(eigens.tw.wtko$u.plot, eigens.tw.wtko$v.plot, layout = jlayout)
 
