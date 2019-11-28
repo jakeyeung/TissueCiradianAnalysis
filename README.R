@@ -42,7 +42,7 @@ PlotGeneByRhythmicParameters(fits.long, subset(dat.long, experiment == "array"),
 
 #' ### Plot genes for WT and KO to see whether a gene is clock-controlled or clock-independent (e.g., driven by feeding rhythms)
 #'
-#' Dbp is clock controlled, because it is flat in Bmal1 KO
+#' *Dbp* is clock controlled, because it is flat in Bmal1 KO
 
 #' ### WT vs KO DBP:
 
@@ -69,17 +69,17 @@ s.tw <- SvdOnComplex(subset(dat.complex, gene %in% genes.tw), value.var = "exprs
 # on Naef data
 s.tw.wtko <- SvdOnComplex(subset(dat.freq, gene %in% genes.tw.wtko), value.var = "exprs.transformed")
 
-eigens.tw <- GetEigens(s.tw, period = 24, comp = svdcomponent, add.arrow = TRUE, jsize = 2, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
+eigens.tw <- GetEigens(s.tw, period = 24, comp = svdcomponent, add.arrow = TRUE, jsize = 12, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
 jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
 #' ### Tissue-wide SVD module
 multiplot(eigens.tw$u.plot, eigens.tw$v.plot, layout = jlayout)
 
-#' The gene loadings show how the phase and amplitude relates to each other. For example, we find /Arntl/ to oscillate in phase with /Npas2/ across tissues, but antiphasic with /Dbp/.
+#' The gene loadings show how the phase and amplitude relates to each other. For example, we find *Arntl* to oscillate in phase with *Npas2* across tissues, but antiphasic with *Dbp*.
 #'
 #' The tissue loadings show how the oscillations of each gene relates across tissues. Here we see in this tissue-wide module that these genes oscillate in nearly all tissues, with coherent phases. However, we find the amplitudes vary (we often see brain tissues have lower amplitudes than other tissues like liver)
 
-eigens.tw.wtko <- GetEigens(s.tw.wtko, period = 24, add.arrow = TRUE, comp = svdcomponent, jsize = 2, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
+eigens.tw.wtko <- GetEigens(s.tw.wtko, period = 24, add.arrow = TRUE, comp = svdcomponent, jsize = 12, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
 jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
 #' ### Tissue-wide SVD module on WT and KO data

@@ -18,6 +18,10 @@
     ##     intersect, setdiff, setequal, union
 
     library(ggplot2)
+
+    ## RStudio Community is a great place to get help:
+    ## https://community.rstudio.com/c/tidyverse.
+
     library(hash)
 
     ## hash-2.2.6.1 provided by Decision Patterns
@@ -145,7 +149,7 @@ visualize how modules of genes oscillate across tissues
     ## Warning: Detecting old grouped_df format, replacing `vars` attribute by
     ## `groups`
 
-    eigens.tw <- GetEigens(s.tw, period = 24, comp = svdcomponent, add.arrow = TRUE, jsize = 8, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
+    eigens.tw <- GetEigens(s.tw, period = 24, comp = svdcomponent, add.arrow = TRUE, jsize = 12, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
 
     ## Warning in if (!is.na(label.gene)) {: the condition has length > 1 and only
     ## the first element will be used
@@ -168,7 +172,7 @@ oscillate in nearly all tissues, with coherent phases. However, we find
 the amplitudes vary (we often see brain tissues have lower amplitudes
 than other tissues like liver)
 
-    eigens.tw.wtko <- GetEigens(s.tw.wtko, period = 24, add.arrow = TRUE, comp = svdcomponent, jsize = 8, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
+    eigens.tw.wtko <- GetEigens(s.tw.wtko, period = 24, add.arrow = TRUE, comp = svdcomponent, jsize = 12, label.n = 15, eigenval = TRUE, adj.mag = TRUE, constant.amp = dotsize, peak.to.trough = TRUE, label.gene = c("Dbp", "Arntl", "Per2", "Nr1d1"))
 
     ## Warning in if (!is.na(label.gene)) {: the condition has length > 1 and only
     ## the first element will be used
