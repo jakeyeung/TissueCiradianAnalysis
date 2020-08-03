@@ -1,3 +1,6 @@
+#' Data and functions to analyze circadian gene expression across tissues. Clone of https://bitbucket.org/jakeyeung/circadianrnaseq but removed files >100MB (github limit)    
+
+
 # Jake Yeung
 # Date of Creation: 2019-11-27
 # File: ~/projects/CircadianRNASeq/README.R

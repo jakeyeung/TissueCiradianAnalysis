@@ -1,4 +1,4 @@
-Data and functions to analyze circadian gene expression across tissues. Clone of https://jakeyeung@bitbucket.org/jakeyeung/tissuecircadiananalysis.git but removed files >100MB (github limit)    
+Data and functions to analyze circadian gene expression across tissues. Clone of https://bitbucket.org/jakeyeung/circadianrnaseq but removed files >100MB (github limit)    
 
 
 	# Jake Yeung
