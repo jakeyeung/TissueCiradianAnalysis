@@ -1,46 +1,47 @@
-Deprecated, please visit the bitbucket repo for data and functions to analyze circadian gene expression across tissues. https://bitbucket.org/jakeyeung/circadianrnaseq
-
-
-	# Jake Yeung
+    # Jake Yeung
     # Date of Creation: 2019-11-27
     # File: ~/projects/CircadianRNASeq/README.R
     # Test things out before moving to Rmd
 
     library(reshape2)
     library(dplyr)
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
     library(ggplot2)
-
-    ## RStudio Community is a great place to get help:
-    ## https://community.rstudio.com/c/tidyverse.
-
     library(hash)
-
-    ## hash-2.2.6.1 provided by Decision Patterns
-
     library(CircadianRNASeq)
     library(here())
-
-    ## here() starts at /home/yeung/projects/CircadianRNASeq
 
     setwd(here())
 
 Load data
 ---------
 
-    inf <- "data/GR_2018_Primetime_Objects.Rdata"
-    suppressMessages(load(inf, v=F))
+    data(GR_2018_Primetime_Objects, verbose=TRUE)
+
+    ## Warning in find.package(package, lib.loc, verbose = verbose): package 'lazyeval' found more than once, using the first from
+    ##   "/usr/lib64/R/library/lazyeval",
+    ##   "/home/yeung/R/x86_64-redhat-linux-gnu-library/3.6/lazyeval"
+
+    ## Warning in find.package(package, lib.loc, verbose = verbose): package 'reshape2' found more than once, using the first from
+    ##   "/home/yeung/R/x86_64-redhat-linux-gnu-library/3.6/reshape2",
+    ##   "/usr/lib64/R/library/reshape2"
+
+    ## Warning in find.package(package, lib.loc, verbose = verbose): package 'usethis' found more than once, using the first from
+    ##   "/home/yeung/R/x86_64-redhat-linux-gnu-library/3.6/usethis",
+    ##   "/usr/lib64/R/library/usethis"
+
+    ## name=GR_2018_Primetime_Objects:   NOT found in names() of Rdata.rds, i.e.,
+    ##  french_fries,smiths,tips
+
+    ## name=GR_2018_Primetime_Objects:   NOT found in names() of Rdata.rds, i.e.,
+    ##  diamonds,economics,economics_long,faithfuld,luv_colours,midwest,mpg,msleep,presidential,seals,txhousing
+
+    ## name=GR_2018_Primetime_Objects:   NOT found in names() of Rdata.rds, i.e.,
+    ##  band_instruments,band_instruments2,band_members,nasa,starwars,storms
+
+    ## name=GR_2018_Primetime_Objects:   found in Rdata.rds
+
+    # inf <- "data/GR_2018_Primetime_Objects.Rdata"  # if data() fails
+    # suppressMessages(load(inf, v=F))
 
 Plot some genes
 ---------------
@@ -49,15 +50,14 @@ Plot some genes
     dat.sub <- subset(dat.long, gene == jgene)
 
 **Expression of Dbp across tissues and time from Hogenesch data: **
-`#+ fig.width=4, fig.height=4, dpi=50`
 
     PlotGeneAcrossTissues(dat.sub) + theme_bw()  + theme(aspect.ratio = 1, legend.position = "none")
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-4-1.png)
 
 we do model selection to identify rhythmic parameters shared or
-differenet across tissues \#\#\# Model selection output automatically
-groups tissues by rhythmic parameters
+differenet across tissues Model selection output automatically groups
+tissues by rhythmic parameters
 
     jgene.byparam <- "Ube2u"
     PlotGeneByRhythmicParameters(fits.long, subset(dat.long, experiment == "array"),
@@ -71,45 +71,15 @@ groups tissues by rhythmic parameters
 
 Here we show a liver-specific rhythmic gene. We plot just the microarray
 data for visualization purposes, although the model is fit on both
-microarray and RNA-seq together. \#\#\# Plot genes for WT and KO to see
-whether a gene is clock-controlled or clock-independent (e.g., driven by
-feeding rhythms)
-
-*Dbp* is clock controlled, because it is flat in Bmal1 KO \#\#\# WT vs
+microarray and RNA-seq together. Plot genes for WT and KO to see whether
+a gene is clock-controlled or clock-independent (e.g., driven by feeding
+rhythms) *Dbp* is clock controlled, because it is flat in Bmal1 KO WT vs
 KO DBP:
 
     PlotGeneTissuesWTKO(subset(dat.wtko, gene == jgene), jtitle = jgene, jsize = 10, single.day = TRUE)
 
     ## Warning: Detecting old grouped_df format, replacing `vars` attribute by
     ## `groups`
-
-    ## Warning: filter_() is deprecated. 
-    ## Please use filter() instead
-    ## 
-    ## The 'programming' vignette or the tidyeval book can help you
-    ## to program with filter() : https://tidyeval.tidyverse.org
-    ## This warning is displayed once per session.
-
-    ## Warning: mutate_() is deprecated. 
-    ## Please use mutate() instead
-    ## 
-    ## The 'programming' vignette or the tidyeval book can help you
-    ## to program with mutate() : https://tidyeval.tidyverse.org
-    ## This warning is displayed once per session.
-
-    ## Warning: group_by_() is deprecated. 
-    ## Please use group_by() instead
-    ## 
-    ## The 'programming' vignette or the tidyeval book can help you
-    ## to program with group_by() : https://tidyeval.tidyverse.org
-    ## This warning is displayed once per session.
-
-    ## Warning: summarise_() is deprecated. 
-    ## Please use summarise() instead
-    ## 
-    ## The 'programming' vignette or the tidyeval book can help you
-    ## to program with summarise() : https://tidyeval.tidyverse.org
-    ## This warning is displayed once per session.
 
 ![](README_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
@@ -126,8 +96,8 @@ KO
     ## # Groups:   gene, method [1]
     ##   gene  model weight weight.raw param.list method n.params n.rhyth amp.avg
     ##   <fct> <fct>  <dbl>      <dbl> <list>     <chr>     <int>   <int>   <dbl>
-    ## 1 Dbp   Live~  0.966      -48.7 <dbl [6]>  g=1001        1       2    2.83
-    ## # ... with 3 more variables: phase.sd <dbl>, phase.maxdiff <dbl>,
+    ## 1 Dbp   Live…  0.966      -48.7 <dbl [6]>  g=1001        1       2    2.83
+    ## # … with 3 more variables: phase.sd <dbl>, phase.maxdiff <dbl>,
     ## #   phase.avg <dbl>
 
 Complex-valued SVD
@@ -159,7 +129,8 @@ visualize how modules of genes oscillate across tissues
 
     jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
-### Tissue-wide SVD module
+Tissue-wide SVD module
+----------------------
 
     multiplot(eigens.tw$u.plot, eigens.tw$v.plot, layout = jlayout)
 
@@ -182,7 +153,8 @@ than other tissues like liver)
 
     jlayout <- matrix(c(1, 2), 1, 2, byrow = TRUE)
 
-### Tissue-wide SVD module on WT and KO data
+Tissue-wide SVD module on WT and KO data
+----------------------------------------
 
     multiplot(eigens.tw.wtko$u.plot, eigens.tw.wtko$v.plot, layout = jlayout)
 

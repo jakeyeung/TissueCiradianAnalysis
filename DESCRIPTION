@@ -1,11 +1,16 @@
 Package: CircadianRNASeq
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Analysis of oscillatory RNASeq data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Jake Yeung
+Maintainer: <jakeyeung@gmail.com>
+Description: Data and functions used to load data, fit statistical models, and generate figures in Yeung et al. 2018 Genome Research
+License: MIT Open License
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr,
+    hash,
+	Matrix,
+	numbers,
+	ggplot2
