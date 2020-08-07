@@ -1,5 +1,16 @@
+#' ## Installation instructions to install data and functions to use models developed and in Yeung 2018
+#' 
+#'  on github (need to download GR_2018_Primetime_Objects.RData from our remote server)
+
+# devtools::install_github("https://github.com/jakeyeung/TissueCiradianAnalysis.git")
+
+#'  on bitbucket (GR_2018_Primetime_Objects.RData included)
+
+# devtools::install_bitbucket("https://jakeyeung@bitbucket.org/jakeyeung/circadianrnaseq")
+
 #' This is a quick tutorial on how to load the output of the statistical model and visualize the results. 
 #' For a tutorial on applying the model selection method to the RNA-seq data, see `tutorial_fit_conditions_to_data.md`
+
 
 
 # Jake Yeung
@@ -15,6 +26,7 @@ library(CircadianRNASeq)
 library(here())
 
 setwd(here())
+
 
 
 #' ## Load data

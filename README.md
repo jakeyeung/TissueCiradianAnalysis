@@ -1,3 +1,20 @@
+Installation instructions to install data and functions to use models developed and in Yeung 2018
+-------------------------------------------------------------------------------------------------
+
+on github (need to download GR\_2018\_Primetime\_Objects.RData from our
+remote server)
+
+    # devtools::install_github("https://github.com/jakeyeung/TissueCiradianAnalysis.git")
+
+on bitbucket (GR\_2018\_Primetime\_Objects.RData included)
+
+    # devtools::install_bitbucket("https://jakeyeung@bitbucket.org/jakeyeung/circadianrnaseq")
+
+This is a quick tutorial on how to load the output of the statistical
+model and visualize the results. For a tutorial on applying the model
+selection method to the RNA-seq data, see
+`tutorial_fit_conditions_to_data.md`
+
     # Jake Yeung
     # Date of Creation: 2019-11-27
     # File: ~/projects/CircadianRNASeq/README.R
@@ -15,33 +32,11 @@
 Load data
 ---------
 
-    data(GR_2018_Primetime_Objects, verbose=TRUE)
-
-    ## Warning in find.package(package, lib.loc, verbose = verbose): package 'lazyeval' found more than once, using the first from
-    ##   "/usr/lib64/R/library/lazyeval",
-    ##   "/home/yeung/R/x86_64-redhat-linux-gnu-library/3.6/lazyeval"
-
-    ## Warning in find.package(package, lib.loc, verbose = verbose): package 'reshape2' found more than once, using the first from
-    ##   "/home/yeung/R/x86_64-redhat-linux-gnu-library/3.6/reshape2",
-    ##   "/usr/lib64/R/library/reshape2"
-
-    ## Warning in find.package(package, lib.loc, verbose = verbose): package 'usethis' found more than once, using the first from
-    ##   "/home/yeung/R/x86_64-redhat-linux-gnu-library/3.6/usethis",
-    ##   "/usr/lib64/R/library/usethis"
-
-    ## name=GR_2018_Primetime_Objects:   NOT found in names() of Rdata.rds, i.e.,
-    ##  french_fries,smiths,tips
-
-    ## name=GR_2018_Primetime_Objects:   NOT found in names() of Rdata.rds, i.e.,
-    ##  diamonds,economics,economics_long,faithfuld,luv_colours,midwest,mpg,msleep,presidential,seals,txhousing
-
-    ## name=GR_2018_Primetime_Objects:   NOT found in names() of Rdata.rds, i.e.,
-    ##  band_instruments,band_instruments2,band_members,nasa,starwars,storms
-
-    ## name=GR_2018_Primetime_Objects:   found in Rdata.rds
-
-    # inf <- "data/GR_2018_Primetime_Objects.Rdata"  # if data() fails
-    # suppressMessages(load(inf, v=F))
+    # Load this .RData object: http://upnaesrv1.epfl.ch/JakeYeung_TissuePaper_RData_Objects/GR_2018_Primetime_Objects.RData
+    inf <- "/home/yeung/projects/CircadianRNASeq/data/GR_2018_Primetime_Objects.RData"
+    suppressMessages(load(inf, v=F))
+    # alternatively, if downloaded from bitbucket: 
+    # data(GR_2018_Primetime_Objects, verbose=TRUE)  # data is large >500MB, so not installed by default. If package downloaded from https://bitbucket.org/jakeyeung/circadianrnaseq, then you can load this data directly. Otherwise downloda the .RData and load it
 
 Plot some genes
 ---------------
@@ -53,7 +48,7 @@ Plot some genes
 
     PlotGeneAcrossTissues(dat.sub) + theme_bw()  + theme(aspect.ratio = 1, legend.position = "none")
 
-![](README_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
 we do model selection to identify rhythmic parameters shared or
 differenet across tissues Model selection output automatically groups
@@ -67,7 +62,7 @@ tissues by rhythmic parameters
     ## Warning: Detecting old grouped_df format, replacing `vars` attribute by
     ## `groups`
 
-![](README_files/figure-markdown_strict/unnamed-chunk-5-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-7-1.png)
 
 Here we show a liver-specific rhythmic gene. We plot just the microarray
 data for visualization purposes, although the model is fit on both
@@ -81,7 +76,7 @@ KO DBP:
     ## Warning: Detecting old grouped_df format, replacing `vars` attribute by
     ## `groups`
 
-![](README_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-8-1.png)
 
 The model selection for dat.wtko object is called \`fits.long.filt\`\`,
 here I show that Dbp is rhythmic in liver and kidney wild type, but not
@@ -99,6 +94,9 @@ KO
     ## 1 Dbp   Live…  0.966      -48.7 <dbl [6]>  g=1001        1       2    2.83
     ## # … with 3 more variables: phase.sd <dbl>, phase.maxdiff <dbl>,
     ## #   phase.avg <dbl>
+
+Check out `tutorial_fit_conditions_to_data.md` to a small example of how
+this model is applied to RNAseq data.
 
 Complex-valued SVD
 ------------------
@@ -134,7 +132,7 @@ Tissue-wide SVD module
 
     multiplot(eigens.tw$u.plot, eigens.tw$v.plot, layout = jlayout)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-11-1.png)
 
 The gene loadings show how the phase and amplitude relates to each
 other. For example, we find *Arntl* to oscillate in phase with *Npas2*
@@ -158,7 +156,7 @@ Tissue-wide SVD module on WT and KO data
 
     multiplot(eigens.tw.wtko$u.plot, eigens.tw.wtko$v.plot, layout = jlayout)
 
-![](README_files/figure-markdown_strict/unnamed-chunk-11-1.png)
+![](README_files/figure-markdown_strict/unnamed-chunk-13-1.png)
 
 Here we find the gene loadings of the clock-controlled genes to be very
 comparable to the Hogenesch data (Hogenesch data will contain both
