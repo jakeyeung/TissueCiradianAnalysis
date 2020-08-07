@@ -1,14 +1,18 @@
-Installation instructions to install data and functions to use models developed and in Yeung 2018
--------------------------------------------------------------------------------------------------
+CircadianRNASeq: statistical models, data, and functions for analyzing
+temporal gene expression over the 24-hour day This package is related to
+Yeung, Mermet et al. 2018 Genome Research
+(<https://europepmc.org/article/pmc/5793782>) \#\# Installation
+instructions to install data and functions developed and used in Yeung
+2018
 
 on github (need to download GR\_2018\_Primetime\_Objects.RData from our
 remote server)
 
-    # devtools::install_github("https://github.com/jakeyeung/TissueCiradianAnalysis.git")
+    # devtools::install_github("jakeyeung/TissueCiradianAnalysis")
 
 on bitbucket (GR\_2018\_Primetime\_Objects.RData included)
 
-    # devtools::install_bitbucket("https://jakeyeung@bitbucket.org/jakeyeung/circadianrnaseq")
+    # devtools::install_bitbucket("jakeyeung/circadianrnaseq")
 
 This is a quick tutorial on how to load the output of the statistical
 model and visualize the results. For a tutorial on applying the model
